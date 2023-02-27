@@ -1,0 +1,47 @@
+<html class="class="fontawesome-i2svg-active fontawesome-i2svg-complete"">
+  <head></head>
+  <body>
+    <%= flash[:notice] %>
+    <% if @book.errors.any? %>
+         <%= @book.errors.count %>errors prohibited this obj from being saved:
+         <ul>
+          <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+          </ul>
+           <% end %>
+    <main>
+    <p id="notice"></p>
+    <div class ="containar">
+      <div class ="row">
+        <div class ="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+          <h1>Editing Book</h1>
+          <%= form_with model: @book do |f| %>
+          
+            <div class ="form_grpup">
+              <%= f.label:Title %> <br>
+            <%= f.text_field :title %> 
+            </div>
+             
+            <div class="form-group">
+            <%= f.label :Opinion %><br>
+            <%= f.text_area :body %>
+            </div>
+            <div class="form-group">
+              <%= f.submit 'Update Book' , class:'btn btn-sm btn-success'  %>
+            </div>
+
+            <div class="form-group">
+            <%= link_to "Show","/books/#{@book.id}" %> | <%= link_to "Back", books_path %>
+            </div>
+        </div>
+      </div>
+  </div>
+    <% end %>
+    </main>
+  </body>
+
+
+
+
+

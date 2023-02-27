@@ -1,0 +1,85 @@
+<html>
+  <head></head>
+  <body>
+    <% if @book.errors.any? %>
+         <%= @book.errors.count %>errors prohibited this obj from being saved:
+         <ul>
+          <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+          </ul>
+           <% end %>
+    <main>
+      <p id ="notice"></p>
+      <div class= "container px-5 px-sm-0">
+              <div class= "row">
+      <div class ="col-md-3">
+        
+        <h1>User info</h1>
+         <% if @user.profile_image? %>
+             <%= image_tag @user.profile_image.url %>
+             <% else %>
+             <%= image_tag ("default-image.jpg") %>
+          <% end %>
+        
+        <table class= "table">
+          <tbody>
+            <tr>
+              <th>name</th>
+              <th><%= @user.name %></th>
+            </tr>
+            <tr>
+              <th>introduction</th>
+              <th><%= @user.introduction %></th>
+            </tr>
+          </tbody>
+        </table>
+         <div class ="row">
+            <% @user.id == current_user.id %>
+           <%= link_to  edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
+            <strong><i class="fas fa-user-cog "></i></strong>
+             <% end %>     
+        </div>
+        
+          <%= form_with model: Book.new do |f| %>
+          <h2 class="mt-3">New book</h2>
+        <h4>Title</h4>
+          <%= f.text_field :title %>
+        <h4>Option</h4>
+         <%= f.text_area :body %>
+          <%= f.submit 'Create Book', class:'btn btn-sm btn-success'  %>
+           </div>
+          <% end %>
+
+
+    <div class ="col-md-8 offset-md-1">
+      <h2>Books</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+         <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Opinion</th>
+          <th colspan="3"></th>
+         </tr>
+        </thead>
+       <tbody>
+         <% @books.each do |book| %>
+          <tr>
+           <td><%= link_to user_path(book.user.id) do %>
+            <%= image_tag 'default-image.jpg', size: "75x75" %>
+            <% end %>
+           </td>
+            <span><td><%= link_to  book.title, "/books/#{book.id}" %></td></span>
+            <td><%= book.body %></td>
+            <td> コメント件数：<%= book.book_comments.count %><br></td>
+          </tr>
+          <% end %>
+       </tbody>
+    </table>
+
+       
+ </tbody>
+    </tr>
+    </div>
+  </div>  
