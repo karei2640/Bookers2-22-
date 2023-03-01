@@ -36,9 +36,15 @@
                         <% @user.followings.each do |u| %>
                         <% end %></2>
                 </th>
+                
+               </div>
+              </td>
             </tr>
             <tr>
-                
+                <div class='row'>
+                 <% if current_user != @user %>
+                   <td><%= render "relationships/btn", user: @user %></td>
+                <% end %>
             </tr>
           </tbody>
         </table>

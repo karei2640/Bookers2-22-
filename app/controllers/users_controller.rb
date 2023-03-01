@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     Book.where(user_id: @user.id).all 
     @books = @user.books.all
     @set_relationship = current_user.relationships.new
+    @book = Book.new
   end
   
   def create
