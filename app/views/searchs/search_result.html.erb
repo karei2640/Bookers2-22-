@@ -1,0 +1,49 @@
+
+<table class="table table-hover table-inverse">
+  <% if @range == "User" %>
+  <%= render 'searchs/form' %>
+  <div class ="col-md-8 offset-md-1">
+      <h2>Users search</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+         <tr>
+          <th>image</th>
+          <th>name</th>
+          <th></th>
+          <th colspan="3"></th>
+         </tr>
+        </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+          <%= image_tag 'default-image.jpg', size: "75x75" %>
+          </td>
+          <td><%= user.name %></td>
+          <td><%= link_to 'Show', user_path(user.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <tbody>
+      <% @books.each do |book| %>
+        <div class ="col-md-8 offset-md-1">
+        <%= render 'searchs/form' %>
+        <h2>Books search</h2>
+        <thead>
+         <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Opinion</th>
+          <th colspan="3"></th>
+         </tr>
+        </thead>
+        <tr>
+        <td><%= image_tag 'default-image.jpg', size: "75x75" %></td>
+          <td><%= link_to  book.title, "/books/#{book.id}" %></td>
+          <td><%= book.body %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>

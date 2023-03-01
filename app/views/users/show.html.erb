@@ -24,6 +24,22 @@
               <th>introduction</th>
               <th><%= @user.introduction %></th>
             </tr>
+            <tr>
+             <tr>
+                <th>
+                    <h2>follower：
+                        <%= link_to  @user.followings.count,followings_user_path(@user) %>
+                        <% @user.followings.each do |u| %>
+                        <% end %></2>
+                        <h2>followers：
+                        <%= link_to @user.followers.count,followers_user_path(@user) %>
+                        <% @user.followings.each do |u| %>
+                        <% end %></2>
+                </th>
+            </tr>
+            <tr>
+                
+            </tr>
           </tbody>
         </table>
          <div class ="row">
